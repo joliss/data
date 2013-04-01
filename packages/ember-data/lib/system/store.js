@@ -110,7 +110,9 @@ DS.Store = Ember.Object.extend(DS._Mappable, {
       throw new Error("Error: The Ember Data library has had breaking API changes since the last time you updated the library. Please review the list of breaking changes at https://github.com/emberjs/data/blob/master/BREAKING_CHANGES.md, then update your store's `revision` property to " + DS.CURRENT_API_REVISION);
     }
 
+    console.log('initing store', this + '');
     if (!get(DS, 'defaultStore') || get(this, 'isDefaultStore')) {
+      console.log('setting default store', this + '');
       set(DS, 'defaultStore', this);
     }
 
@@ -1457,7 +1459,9 @@ DS.Store = Ember.Object.extend(DS._Mappable, {
   },
 
   willDestroy: function() {
+    console.log('will destroy', this + '');
     if (get(DS, 'defaultStore') === this) {
+      console.log('unsetting default store', this + '');
       set(DS, 'defaultStore', null);
     }
   },
